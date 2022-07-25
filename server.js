@@ -316,12 +316,14 @@ const viewEmpByMgr = async () => {
 
 }
 
-const chooseRequest = () => {
-  inquirer.prompt([
+const chooseRequest = async () => {
+  
+  const data = await inquirer.prompt([
       {
         type: 'list',
         name: 'request',
         message: 'What would you like to do?',
+        default: '1',
         choices: ['Add a Department', 
                   'Add an Employee', 
                   'Add a Role',
@@ -334,16 +336,16 @@ const chooseRequest = () => {
                   'View Department Budget', 
                   'View Employees by Department', 
                   'View Employees by Manager',
-                  'Exit'
+                
                  ],
-        default: 'Exit',
-        loop: false,
+    
+        
         },
   ])
 
-  console.log(answers)
+  
 
-  .then((data) => {
+.then((data) => {
       const {request} = data;
       console.log(request);
    
@@ -391,5 +393,5 @@ const chooseRequest = () => {
   })
 }
 
-
+chooseRequest();
 export default chooseRequest();
